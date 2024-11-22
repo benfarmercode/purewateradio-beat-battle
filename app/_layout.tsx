@@ -1,37 +1,96 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
+import { Slot, Stack } from "expo-router";
+import { StyleSheet, Image, SafeAreaView } from "react-native";
+import AuthProvider from "@/providers/AuthProvider";
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { useEffect } from "react";
+import { useAppStateStore } from "@/hooks/useAppStateStore";
+import Header from "@/components/Header";
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { useFonts } from 'expo-font';
+import { Colors } from "@/constants/Colors";
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+// SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
+    const { appState, fetchAppState, subscribeToAppState } = useAppStateStore();
+    const [loaded, error] = useFonts({
+        'BNRoute22': require('@/assets/fonts/BNRoute22.otf'),
+    });
 
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
+    useEffect(() => {
+        if (loaded || error) {
+            SplashScreen.hideAsync();
+        }
+    }, [loaded, error]);
+
+
+    useEffect(() => {
+        // Fetch data and update both stores
+        const runFetchAppState = async () => {
+            await fetchAppState();
+        };
+        runFetchAppState();
+        subscribeToAppState();
+    }, []);
+
+    if (!loaded && !error) {
+        return null;
     }
-  }, [loaded]);
 
-  if (!loaded) {
-    return null;
-  }
-
-  return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-    </ThemeProvider>
-  );
+    return (
+        <AuthProvider>
+            {/* <Slot /> */}
+            <SafeAreaView style={styles.container}>
+                <Stack screenOptions={{
+                    // headerTitle: '',
+                    // headerStyle: { backgroundColor: 'transparent' },
+                    // headerShadowVisible: false,
+                    // headerTitleAlign: 'center',
+                    // headerLeft: () => (
+                    //     <Image
+                    //         source={require('@/assets/images/pwr-logo.png')}
+                    //         style={styles.logo}
+                    //     />
+                    // ),
+                    // headerRight: () => (
+                    //     <Image
+                    //         source={require('@/assets/images/redbull-logo.png')}
+                    //         style={styles.logoRight}
+                    //     />
+                    // ),
+                    // contentStyle: { backgroundColor: 'Colors.gray' },
+                    headerShown: false,
+                }}>
+                </Stack>
+            </SafeAreaView>
+        </AuthProvider>
+    );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: Colors.gray,
+    },
+    logo: {
+        width: 90,
+        height: '100%',
+        resizeMode: 'contain',
+        tintColor: '#272E72',
+        alignSelf: 'flex-start',
+        left: 20
+    },
+    logoRight: {
+        width: 150,
+        height: '100%',
+        resizeMode: 'contain',
+        // tintColor: 'blue',
+        alignSelf: 'flex-start',
+        right: 20,
+
+    },
+    scores: {
+        gap: 20
+    },
+})

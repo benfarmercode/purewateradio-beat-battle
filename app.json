@@ -7,8 +7,9 @@
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/images/flyer.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -23,14 +24,24 @@
     },
     "web": {
       "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "output": "single",
+      "favicon": "./public/favicon.ico"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "29b28970-6f05-4adf-938c-ccfa360a145b"
+      }
+    },
+    "owner": "benfarmercode"
   }
 }
