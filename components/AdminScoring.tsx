@@ -103,7 +103,6 @@ export default function AdminScoring() {
                         <Text style={styles.name}>XINA</Text>
                         <TextInput
                             value={score1}
-                            inputMode='numeric'
                             onChangeText={setScore1}
                             style={styles.input}
                             placeholder="Score 1: XINA"
@@ -113,7 +112,6 @@ export default function AdminScoring() {
                         <Text style={styles.name}>OBI</Text>
                         <TextInput
                             value={score2}
-                            inputMode='numeric'
                             onChangeText={setScore2}
                             style={styles.input}
                             placeholder="Socre 2: OBI"
@@ -123,7 +121,6 @@ export default function AdminScoring() {
                         <Text style={styles.name}>ECHO</Text>
                         <TextInput
                             value={score3}
-                            inputMode='numeric'
                             onChangeText={setScore3}
                             style={styles.input}
                             placeholder="Score 3: ECHO"
