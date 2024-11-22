@@ -42,7 +42,7 @@ export default function Home() {
             console.log(error.message)
         }
         else {
-            router.push("/(public)/(tabs)/scoreboard");
+            router.push("/(user)/vote");
         }
         setLoading(false)
     }
@@ -54,7 +54,7 @@ export default function Home() {
     }
 
     if(user && !isAuthenticated){
-        return <Redirect href="/(public)/(tabs)/scoreboard" />
+        return <Redirect href="/(user)/vote" />
     }
 
     return (

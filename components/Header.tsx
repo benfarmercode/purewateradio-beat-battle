@@ -22,7 +22,7 @@ const Header: React.FC<HeaderProps> = ({ absolute, showAdmin, logoColor }) => {
                 <View style={styles.inner}>
                     <Image
                         source={{ uri: Icons.purewateradio }}
-                        style={[styles.logo, { tintColor: tint } ]}
+                        style={[styles.logo, { tintColor: tint }]}
                     />
                     <Image
                         source={{ uri: Icons.redbull }}
@@ -37,13 +37,13 @@ const Header: React.FC<HeaderProps> = ({ absolute, showAdmin, logoColor }) => {
                     <Link href='/(admin)/(tabs)/admin'>Switch to admin</Link>
                 </View>
             }
-            {width > 768 &&
-                <View style={styles.hiddenButton}>
-                    <Pressable onPress={() => supabase.auth.signOut()}>
-                        <Text>Sign Out</Text>
-                    </Pressable>
-                </View>
-            }
+
+            <View style={styles.hiddenButton}>
+                <Pressable onPress={() => supabase.auth.signOut()}>
+                    <Text>Sign Out</Text>
+                </Pressable>
+            </View>
+
         </>
     )
 }

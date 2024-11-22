@@ -8,10 +8,12 @@ import TextFont from "@/components/TextFont";
 import Header from "@/components/Header";
 import { Colors } from "@/constants/Colors";
 import { Icons } from "@/constants/Icons";
+import { useAuth } from "@/providers/AuthProvider";
+import { Redirect } from "expo-router";
 
 
 export default function VoteScreen() {
-
+    const { user, isAuthenticated } = useAuth();
     const votingState = useAppStateStore((state) => state.votingState);
     const {fetchVotingState} = useAppStateStore();
     const {width, height} = useWindowDimensions();
@@ -23,6 +25,11 @@ export default function VoteScreen() {
     if (!votingState) {
         return <ActivityIndicator />
     }
+
+    if (!user) {
+        return <Redirect href="/" />
+    }
+
 
     return (
         <View style={GlobalStyles.container}>

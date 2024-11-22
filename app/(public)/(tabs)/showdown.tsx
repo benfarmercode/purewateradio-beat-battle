@@ -34,7 +34,7 @@ export default function Showdown() {
 
     return (
         <View style={[styles.container, { backgroundColor: '#A50808' }]}>
-            <Header absolute={true} />
+            <Header absolute={true} logoColor={Colors.yellow}/>
             <View style={styles.title}>
                 <TextFont text={'The Showdown'} fontSize='large' color={Colors.gray} />
             </View>
