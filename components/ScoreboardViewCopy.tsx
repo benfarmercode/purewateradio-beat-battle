@@ -11,6 +11,7 @@ import { Colors } from "@/constants/Colors";
 import { Icons } from "@/constants/Icons";
 import TextFont from "./TextFont";
 import Header from "./Header";
+import { supabase } from "@/lib/supabase";
 
 export default function ScoreboardCopy() {
 
@@ -19,7 +20,7 @@ export default function ScoreboardCopy() {
 
     const { height, width } = useWindowDimensions();
 
-    const calculateTotalScore = (participantScores: Score[]) => {
+    const calculateTotalScore = (participantScores: Score[], participantId: number) => {
         let totalScore = 0;
         if (participantScores.length > 0) {
             participantScores.forEach(participantScore => {
@@ -27,8 +28,24 @@ export default function ScoreboardCopy() {
             })
         }
 
+        writeTotalScore(totalScore, participantId)
+
+
         return totalScore
     }
+
+    const writeTotalScore = async (totalScore: number, participantId: number) => {
+        const { data, error } = await supabase
+            .from('participants')
+            .update({
+                total_score: totalScore
+            })
+            .eq('id', participantId);
+
+        
+    }
+
+
 
     useEffect(() => {
         participants.forEach(participant => {
@@ -59,7 +76,7 @@ export default function ScoreboardCopy() {
                     .sort((a, b) => b.total_score - a.total_score)
                     .map((participant) => {
                         const participantScores = scores.filter(score => score.participant === participant.id);
-                        const totalScore = calculateTotalScore(participantScores)
+                        const totalScore = calculateTotalScore(participantScores, participant.id)
                         return (
                             <View key={`${participant.id}-score-column`} style={width < 768 ? styles.participantWrapperMobile : styles.participantWrapperDesktop}>
                                 <View style={width < 768 ? styles.imageWrapperMobile : styles.imageWrapperDesktop}>
@@ -67,6 +84,11 @@ export default function ScoreboardCopy() {
                                         source={{ uri: participant.icon_url }}
                                     />
                                 </View>
+                                {/* {participantScores.length > 0 &&
+                                    <View style={width < 768 ? styles.scoresMobile : styles.scoresDesktop}>
+                                        <TextFont text={String(totalScore)} key={`${participant.id}-round`} fontSize="large" color={Colors.darkBlue} />
+                                    </View>
+                                } */}
                                 {/* <View style={width < 768 ? styles.scoresMobile : styles.scoresDesktop}>
                                     {participantScores.length > 0 ? (
                                         participantScores.map((participantScore, index) => {

@@ -14,10 +14,10 @@ export default function Voting() {
 
     const [poll, setPoll] = useState<Poll | null>(null)
     const votingState = useAppStateStore((state) => state.votingState);
-    const {fetchVotingState} = useAppStateStore();
+    const { fetchVotingState } = useAppStateStore();
     // const [votes, setVotes] = useState<Vote[] | null>(null)
 
-    const votes = useAppStateStore((state)=> state.votes)
+    const votes = useAppStateStore((state) => state.votes)
     const fetchVotes = useAppStateStore(state => state.fetchVotes);
     const { appState } = useAppStateStore();
 
@@ -102,7 +102,11 @@ export default function Voting() {
                             </View>
                             {votes && votingState != 'WAITING' &&
                                 <View style={styles.optionResult}>
-                                    <TextFont text={String(countVotes(votes, option)) + '%'} fontSize='med' color={Colors.white} />
+                                    <TextFont
+                                        text={String(countVotes(votes, option).toFixed(1)) + '%'}
+                                        fontSize='med'
+                                        color={Colors.white}
+                                    />
                                 </View>
                             }
                         </View>
