@@ -35,16 +35,16 @@ export default function Beat() {
 
                 <View style={[styles.inner]}>
                     <View style={{ width: width < 768 ? '100%' : 1200 }}>
-                        <TextFont text={'Round ' + appState?.current_round + ':'} fontSize={'med'} color={Colors.darkBlue} />
-                        <TextFont text={rounds[Number(appState?.current_round) - 1].title} fontSize={'2xl'} color={Colors.darkBlue} />
+                        <TextFont text={'Round ' + appState?.current_round + ':'} fontSize={'large'} color={Colors.darkBlue} />
+                        <TextFont text={rounds[Number(appState?.current_round) - 1].title.toUpperCase()} fontSize={'2xl'} color={Colors.darkBlue} />
                         {/* <TextFont text={String(rounds[Number(appState?.current_round) - 1].description)} fontSize={'med'} color={Colors.darkBlue} /> */}
                     </View>
 
                 </View>
-                <Image style={[styles.topBanner, { height: width < 768 ? 50 : 150, tintColor: Colors.red }]} source={{ uri: Icons.dancers }} />
+                {/* <Image style={[styles.topBanner, { height: width < 768 ? 50 : 150, tintColor: Colors.red }]} source={{ uri: Icons.dancers }} /> */}
 
-                <Image style={[styles.wingLeft,]} source={{ uri: Icons.wingLeft }} />
-                <Image style={[styles.wingRight,]} source={{ uri: Icons.wingRight }} />
+                {/* <Image style={[styles.wingLeft,]} source={{ uri: Icons.wingLeft }} />
+                <Image style={[styles.wingRight,]} source={{ uri: Icons.wingRight }} /> */}
                 {/* <Image style={[styles.star,]} source={{ uri: Icons.star }} /> */}
                 {/* <Image style={[styles.starSmall,]} source={{ uri: Icons.starSmall }} /> */}
                 <Image style={[styles.fighter,]} source={{ uri: Icons.fighters }} />

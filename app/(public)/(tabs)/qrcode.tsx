@@ -11,7 +11,7 @@ export default function QRCode() {
 
         <View style={styles.container}>
             <Header absolute={true} logoColor={Colors.white} />
-            <Image style={[styles.topBanner, { height: 150, tintColor: Colors.red }]} source={{ uri: Icons.dancers }} />
+            {/* <Image style={[styles.topBanner, { height: 150, tintColor: Colors.red }]} source={{ uri: Icons.dancers }} /> */}
             <Image style={[styles.fighter,]} source={{ uri: Icons.fighters }} />
             <Image style={[styles.qrcode,]} source={{ uri: Icons.qrcode }} />
         </View>

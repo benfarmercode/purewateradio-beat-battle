@@ -67,7 +67,7 @@ export default function Beat() {
                 <View style={styles.col}>
 
                     <View style={styles.roundName}>
-                        <TextFont text={'Round ' + appState?.current_round + ': ' + rounds[Number(appState?.current_round) - 1].title} fontSize='large' color={textColor} />
+                        <TextFont text={'Round ' + appState?.current_round + ': ' + rounds[Number(appState?.current_round) - 1].title.toUpperCase()} fontSize='large' color={textColor} />
                         {/* <TextFont text={'Set ' + appState?.current_set} fontSize='med' color={textColor} /> */}
                     </View>
 

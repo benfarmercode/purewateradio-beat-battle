@@ -10,22 +10,17 @@ import Header from '@/components/Header'
 import { Colors } from '@/constants/Colors'
 import TextFont from '@/components/TextFont'
 
-export default function Showdown() {
+export default function Winner() {
     const [totalScore, setTotalScore] = useState(0.0);
-    const [participant1, setParticipant1] = useState<Participant>()
-    const [participant2, setParticipant2] = useState<Participant>()
+    const [winner, setWinner] = useState<Participant>()
     const { participants, loading } = useParticipants();
 
     const showdown = useAppStateStore((state) => state.showdown);
     // const currentScreen = useAppStateStore((state) => state.currentScreen);
 
     useEffect(() => {
-        const participantOne = participants.find((participant) => participant.id === showdown?.participant_1);
-        setParticipant1(participantOne);
-
-        const participantTwo = participants.find((participant) => participant.id === showdown?.participant_2);
-        setParticipant2(participantTwo);
-
+        const winner = participants.find((participant) => participant.id === showdown?.winner);
+        setWinner(winner);
     }, [showdown, participants]);
 
     if (loading) {
@@ -33,28 +28,19 @@ export default function Showdown() {
     }
 
     return (
-        <View style={[styles.container, { backgroundColor: '#A50808' }]}>
+        <View style={[styles.container, { backgroundColor: Colors.yellow }]}>
             <Header absolute={true} logoColor={Colors.yellow}/>
             <View style={styles.title}>
-                <TextFont text={'FINAL ROUND'} fontSize='large' color={Colors.gray} />
+                {/* <TextFont text={'WINNER'} fontSize='xl' color={Colors.darkBlue} /> */}
             </View>
 
             <View style={styles.flexRow}>
                 <View style={styles.participant}>
                     <Image
-                        source={{ uri: participant1?.icon_url }}
+                        source={{ uri: winner?.icon_url }}
                         style={styles.avatar}
                     />
-                    <TextFont text={participant1 ? participant1.name : ''} fontSize='large' color={Colors.gray} />
-                </View>
-                <View style={styles.participant}>
-
-                    <Image
-                        source={{ uri: participant2?.icon_url }}
-                        style={styles.avatar}
-                    />
-                    <TextFont text={participant2 ? participant2.name : ''} fontSize='large' color={Colors.gray} />
-
+                    <TextFont text={winner ? winner.name : ''} fontSize='xl' color={Colors.darkBlue} />
                 </View>
             </View>
             <Image style={[styles.fighter,]} source={{ uri: Icons.fighters }} />
@@ -69,10 +55,15 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     title: {
-        marginTop: 140,
+        marginTop: 200,
+        // position: 'absolute',
+        top:'0%',
+        left: '50%',
+        transform: 'translate(-50%, -60%)',
     },
     flexRow: {
         flexDirection: 'row',
+        // marginTop: 200,
         // gap: 10,
         flex: 1,
     },
@@ -84,12 +75,13 @@ const styles = StyleSheet.create({
         overflow: 'visible',
     },
     avatar: {
-        width: '50%',
-        height: '50%',
+        width: '60%',
+        height: '60%',
         // flex: 1,
         resizeMode: 'contain',
         opacity: 1,
         overflow: 'visible',
+        marginBottom: 50,
         // backgroundColor: 'blue',
     },
     fighter: {

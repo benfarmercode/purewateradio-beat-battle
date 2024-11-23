@@ -215,18 +215,21 @@ export type Database = {
           id: number
           participant_1: number | null
           participant_2: number | null
+          winner: number | null
         }
         Insert: {
           created_at?: string
           id?: number
           participant_1?: number | null
           participant_2?: number | null
+          winner?: number | null
         }
         Update: {
           created_at?: string
           id?: number
           participant_1?: number | null
           participant_2?: number | null
+          winner?: number | null
         }
         Relationships: [
           {
@@ -239,6 +242,13 @@ export type Database = {
           {
             foreignKeyName: "showdown_participant_2_fkey"
             columns: ["participant_2"]
+            isOneToOne: false
+            referencedRelation: "participants"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "showdown_winner_fkey"
+            columns: ["winner"]
             isOneToOne: false
             referencedRelation: "participants"
             referencedColumns: ["id"]

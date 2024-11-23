@@ -11,6 +11,7 @@ export default function AdminShowdown() {
     const { participants, loading } = useParticipants();
     const [selectedParticipant1, setSelectedParticipant1] = useState<number>();
     const [selectedParticipant2, setSelectedParticipant2] = useState<number>();
+    const [winner, setWinner] = useState<number>();
 
     const updateShowdown = async () => {
         const { data, error } = await supabase
@@ -19,6 +20,7 @@ export default function AdminShowdown() {
                 {
                     participant_1: selectedParticipant1 ? selectedParticipant1 : null,
                     participant_2: selectedParticipant2 ? selectedParticipant2 : null,
+                    winner: winner ? winner : null,
                 },
             )
             .eq('id', 1)
@@ -45,6 +47,20 @@ export default function AdminShowdown() {
                     selectedValue={selectedParticipant2}
                     onValueChange={(itemValue, itemIndex) =>
                         setSelectedParticipant2(itemValue)
+                    }>
+                    {participants.map(participant => (
+                        <Picker.Item key={`participant-${participant.id}`} label={participant.name} value={participant.id} color={Colors.darkBlue} />
+                    ))}
+                </Picker>
+            </View>
+
+
+            <View style={GlobalStyles.flexRow}>
+                <Text style={GlobalStyles.name}>Winner: </Text>
+                <Picker
+                    selectedValue={winner}
+                    onValueChange={(itemValue, itemIndex) =>
+                        setWinner(itemValue)
                     }>
                     {participants.map(participant => (
                         <Picker.Item key={`participant-${participant.id}`} label={participant.name} value={participant.id} color={Colors.darkBlue} />

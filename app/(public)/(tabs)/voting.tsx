@@ -88,7 +88,7 @@ export default function Voting() {
             <Image style={[styles.star,]} source={{ uri: Icons.star }} />
             <Image style={[styles.starSmall,]} source={{ uri: Icons.starSmall }} />
             <Image style={[styles.fighter,]} source={{ uri: Icons.fighters }} />
-            <TextFont text={poll.question} fontSize='xl' color={Colors.white} />
+            <TextFont text={poll.question.toUpperCase()} fontSize='xl' color={Colors.white} />
             <View style={styles.optionsContainer}>
                 <View style={styles.options}>
                     {poll?.options?.map(option => (
