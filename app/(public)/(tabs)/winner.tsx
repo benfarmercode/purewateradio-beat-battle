@@ -22,7 +22,7 @@ export default function Winner() {
         const winner = participants.find((participant) => participant.id === showdown?.winner);
         setWinner(winner);
     }, [showdown, participants]);
-
+    
     if (loading) {
         return <ActivityIndicator />;
     }
