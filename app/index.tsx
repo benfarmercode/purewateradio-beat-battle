@@ -53,7 +53,7 @@ export default function Home() {
         setLoading(false)
     }
 
-    if(user && !isAuthenticated){
+    if (user && !isAuthenticated) {
         return <Redirect href="/(user)/vote" />
     }
 
@@ -62,6 +62,10 @@ export default function Home() {
             <Header absolute={true} />
             <View style={[styles.container]}>
 
+                <Image style={[styles.topBanner, { height: width < 768 ? 70 : 150, tintColor: Colors.red }]} source={{ uri: Icons.dancers }} />
+                {/* <Image style={[styles.star,]} source={{ uri: Icons.star }} />
+                <Image style={[styles.starSmall,]} source={{ uri: Icons.starSmall }} /> */}
+                <Image style={[styles.fighter,]} source={{ uri: Icons.fighters }} />
                 <View style={styles.inner}>
                     <View style={styles.copyWrapper}>
                         <TextFont text='PUREWATERADIO x REDBULL PRESENT' fontSize='med' color={Colors.darkBlue} />
@@ -74,10 +78,7 @@ export default function Home() {
                         <Text>LOGIN</Text>
                     </Pressable>
                 </View>
-                <Image style={[styles.topBanner, { height: width < 768 ? 70 : 150, tintColor: Colors.red }]} source={{ uri: Icons.dancers }} />
-                <Image style={[styles.star,]} source={{ uri: Icons.star }} />
-                <Image style={[styles.starSmall,]} source={{ uri: Icons.starSmall }} />
-                <Image style={[styles.fighter,]} source={{ uri: Icons.fighters }} />
+
             </View>
         </>
 
@@ -115,6 +116,7 @@ const styles = StyleSheet.create({
         left: '25%',
         transform: 'translate(-50%, -50%)',
         objectFit: 'contain',
+        opacity: 0.8,
     },
 
     starSmall: {
@@ -127,6 +129,7 @@ const styles = StyleSheet.create({
         left: '75%',
         transform: 'translate(-50%, -50%)',
         objectFit: 'contain',
+        opacity: 0.8,
     },
     fighter: {
         width: '100%',

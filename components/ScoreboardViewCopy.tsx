@@ -67,7 +67,7 @@ export default function ScoreboardCopy() {
                                         source={{ uri: participant.icon_url }}
                                     />
                                 </View>
-                                <View style={width < 768 ? styles.scoresMobile : styles.scoresDesktop}>
+                                {/* <View style={width < 768 ? styles.scoresMobile : styles.scoresDesktop}>
                                     {participantScores.length > 0 ? (
                                         participantScores.map((participantScore, index) => {
                                             const setScore = (participantScore.score_1 || 0) + (participantScore.score_2 || 0) + (participantScore.score_3 || 0);
@@ -78,7 +78,7 @@ export default function ScoreboardCopy() {
                                     ) : (
                                         <TextFont text={'0'} key={`${participant.id}-round`} fontSize="large" color={Colors.darkBlue} />
                                     )}
-                                </View>
+                                </View> */}
                             </View>
                         );
                     })}

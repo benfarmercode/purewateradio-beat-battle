@@ -18,4 +18,5 @@ export const Icons = {
     spencer: 'https://meicmcsaummxjemawnmu.supabase.co/storage/v1/object/public/images/icon-spencer.png?t=2024-11-21T07%3A20%3A49.011Z',
     vante: 'https://meicmcsaummxjemawnmu.supabase.co/storage/v1/object/public/images/icon-vante.png?t=2024-11-21T07%3A21%3A10.178Z',
     zak: 'https://meicmcsaummxjemawnmu.supabase.co/storage/v1/object/public/images/icon-zak.png?t=2024-11-21T07%3A21%3A17.945Z',
+    qrcode: 'https://meicmcsaummxjemawnmu.supabase.co/storage/v1/object/public/images/qr-code.png?t=2024-11-23T19%3A47%3A41.791Z',
 };

@@ -13,6 +13,8 @@ export default function Voting() {
     const id = '1';
 
     const [poll, setPoll] = useState<Poll | null>(null)
+    const votingState = useAppStateStore((state) => state.votingState);
+    const {fetchVotingState} = useAppStateStore();
     // const [votes, setVotes] = useState<Vote[] | null>(null)
 
     const votes = useAppStateStore((state)=> state.votes)
@@ -22,8 +24,13 @@ export default function Voting() {
     // Fetch votes on mount
     useEffect(() => {
         console.log("Fetching votes...");
-        fetchVotes();  // This fetches votes from the Supabase table and updates the store
+        fetchVotes();// This fetches votes from the Supabase table and updates the store
     }, [appState]);
+
+    useEffect(() => {
+        fetchVotingState();
+    }, [votingState]);
+
 
     // const fetchVotes = async () => {
     //     console.log('Fetching...');
@@ -87,13 +94,13 @@ export default function Voting() {
                     {poll?.options?.map(option => (
                         <View key={option} style={styles.option}>
                             <View style={styles.optionText}>
-                                {votes &&
+                                {votes && votingState != 'WAITING' &&
                                     <View style={[styles.innerCount, { width: `${countVotes(votes, option)}%` }]}>
                                     </View>
                                 }
                                 <TextFont text={option} fontSize='large' color={Colors.darkBlue} />
                             </View>
-                            {votes &&
+                            {votes && votingState != 'WAITING' &&
                                 <View style={styles.optionResult}>
                                     <TextFont text={String(countVotes(votes, option)) + '%'} fontSize='med' color={Colors.white} />
                                 </View>
@@ -159,7 +166,7 @@ const styles = StyleSheet.create({
         transform: 'translate(-50%, -50%)',
         objectFit: 'contain',
         zIndex: -1,
-        opacity: 0.1,
+        opacity: 0.2,
     },
     heading: {
         fontSize: 56,

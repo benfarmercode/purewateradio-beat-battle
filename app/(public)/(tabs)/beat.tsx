@@ -71,7 +71,7 @@ export default function Beat() {
                         {/* <TextFont text={'Set ' + appState?.current_set} fontSize='med' color={textColor} /> */}
                     </View>
 
-                    <View style={styles.scoresWrapper}>
+                    {/* <View style={styles.scoresWrapper}>
                         <TextFont text={String(totalScore)} fontSize='2xl' color={textColor} />
                         <View style={styles.judgesWrapper}>
                             <View>
@@ -88,7 +88,7 @@ export default function Beat() {
                             </View>
                         </View>
 
-                    </View>
+                    </View> */}
 
                     <Image style={[styles.musicNote,]} source={{ uri: Icons.musicNote }} />
 
@@ -102,7 +102,7 @@ export default function Beat() {
 
 const styles = StyleSheet.create({
     roundName: {
-        marginTop: 140,
+        margin: 'auto',
     },
     screen: {
         flexDirection: 'row',
@@ -114,7 +114,6 @@ const styles = StyleSheet.create({
         // marginTop: 16,
         overflow: 'visible',
         // flex: 1,
-
     },
     wingRight: {
         width: '15%',

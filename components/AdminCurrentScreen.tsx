@@ -32,6 +32,7 @@ export default function AdminCurrentScreen() {
                     <Picker.Item label="Showdown" value="showdown" color={Colors.darkBlue} />
                     <Picker.Item label="Voting" value="voting" color={Colors.darkBlue} />
                     <Picker.Item label="Round" value="round" color={Colors.darkBlue} />
+                    <Picker.Item label="QR-Code" value="qrcode" color={Colors.darkBlue} />
                 </Picker>
             </View>
             <Button onPress={updateCurrentScreen} title={'Update CurrentScreen'} />
